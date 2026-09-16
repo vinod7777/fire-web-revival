@@ -1,0 +1,46 @@
+import { Toaster } from "@/components/ui/toaster";
+import { Toaster as Sonner } from "@/components/ui/sonner";
+import { TooltipProvider } from "@/components/ui/tooltip";
+import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
+import { BrowserRouter, Routes, Route } from "react-router-dom";
+import SmoothScroll from "./components/SmoothScroll";
+import FloatingRegisterButton from "./components/FloatingRegisterButton";
+
+import Index from "./pages/Index";
+import AboutPage from "./pages/AboutPage";
+import LoginPage from "./pages/LoginPage";
+import RegisterPage from "./pages/RegisterPage";
+import TeamPage from "./pages/TeamPage";
+import TracksPage from "./pages/TracksPage";
+import HackathonPage from "./pages/HackathonPage";
+import FAQPage from "./pages/FAQPage";
+import LiquidDemo from "./pages/LiquidDemo";
+import NotFound from "./pages/NotFound";
+
+
+const queryClient = new QueryClient();
+const App = () => {
+    return (<QueryClientProvider client={queryClient}>
+      <TooltipProvider>
+        <SmoothScroll />
+        <Toaster />
+        <Sonner />
+        <BrowserRouter  future={{ v7_startTransition: true, v7_relativeSplatPath: true }}>
+          <FloatingRegisterButton />
+          <Routes>
+            <Route path="/" element={<Index />}/>
+            <Route path="/about" element={<AboutPage />}/>
+            <Route path="/login" element={<LoginPage />}/>
+            <Route path="/register" element={<RegisterPage />}/>
+            <Route path="/team" element={<TeamPage />}/>
+            <Route path="/tracks" element={<TracksPage />}/>
+            <Route path="/hackathon" element={<HackathonPage />}/>
+            <Route path="/faq" element={<FAQPage />}/>
+            <Route path="/liquid-demo" element={<LiquidDemo />}/>
+            <Route path="*" element={<NotFound />}/>
+          </Routes>
+        </BrowserRouter>
+      </TooltipProvider>
+    </QueryClientProvider>);
+};
+export default App;

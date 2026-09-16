@@ -1,0 +1,354 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Avishkaar Season 4 | Official Poster Launch Ceremony</title>
+  
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@600;700;800;900&family=Outfit:wght@400;500;600;700;800;900&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet">
+  
+  <!-- Canvas Confetti -->
+  <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.9.3/dist/confetti.browser.min.js"></script>
+
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <!-- Deep Ocean Living Canvas Background -->
+  <div class="ocean-background-container">
+    <div class="ocean-bg-img" style="background-image: url('assets/bg-ocean.jpg');"></div>
+    <div class="ocean-overlay"></div>
+    <canvas id="bubble-canvas"></canvas>
+    <div class="light-rays"></div>
+  </div>
+
+  <!-- Top Navigation Bar -->
+  <header class="launch-header" id="launch-header">
+    <div class="header-left">
+      <div class="logo-glass-badge">
+        <img src="assets/aitam_logo.webp" alt="AITAM Logo" class="header-logo aitam-logo">
+        <div class="logo-divider"></div>
+        <img src="assets/iic.webp" alt="IIC Logo" class="header-logo iic-logo">
+      </div>
+      <div class="header-text-block">
+        <span class="institution-name">ADITYA INSTITUTE OF TECHNOLOGY AND MANAGEMENT</span>
+        <span class="institution-sub">In Association with Institution's Innovation Council (IIC)</span>
+      </div>
+    </div>
+
+    <div class="header-right">
+      <!-- Master Audio Toggle -->
+      <button id="sound-btn" class="header-action-btn active" title="Toggle Audio (ON / Muted)">
+        <svg id="sound-icon-on" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"></polygon>
+          <path d="M19.07 4.93a10 10 0 0 1 0 14.14M15.54 8.46a5 5 0 0 1 0 7.07"></path>
+        </svg>
+        <svg id="sound-icon-off" class="hidden" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"></polygon>
+          <line x1="23" y1="9" x2="17" y2="15"></line>
+          <line x1="17" y1="9" x2="23" y2="15"></line>
+        </svg>
+        <span id="sound-label">Audio ON</span>
+      </button>
+
+      <!-- Fullscreen Toggle for Stage Projector -->
+      <button id="fullscreen-btn" class="header-action-btn" title="Toggle Fullscreen (F11)">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <path d="M8 3H5a2 2 0 0 0-2 2v3m18 0V5a2 2 0 0 0-2-2h-3m0 18h3a2 2 0 0 0 2-2v-3M3 16v3a2 2 0 0 0 2 2h3"></path>
+        </svg>
+        <span>Fullscreen</span>
+      </button>
+    </div>
+  </header>
+
+  <!-- Master Launch BGM Audio Track -->
+  <audio id="launch-bgm" preload="auto" src="assets/Two_Steps_From_Hell_-_Victory_(mp3.pm).mp3"></audio>
+
+  <!-- Main Viewport Arena -->
+  <main class="launch-arena">
+
+    <!-- ================= STAGE 0: INITIAL STANDBY STATE ================= -->
+    <section id="standby-stage" class="stage-section active">
+
+      <!-- Pure Floating Neon Tech Icons (No text, no labels, matching main hero) -->
+      <div class="floating-tech-icons-container" aria-hidden="true">
+        <!-- 1. Code2 (</>) -->
+        <div class="pure-floating-icon icon-pos-1">
+          <svg viewBox="0 0 24 24" fill="rgba(34, 211, 238, 0.1)" stroke="currentColor" stroke-width="1" stroke-linecap="round" stroke-linejoin="round" class="pure-tech-svg svg-cyan">
+            <path d="m18 16 4-4-4-4"/>
+            <path d="m6 8-4 4 4 4"/>
+            <path d="m14.5 4-5 16"/>
+          </svg>
+        </div>
+
+        <!-- 2. Terminal (>_) -->
+        <div class="pure-floating-icon icon-pos-2">
+          <svg viewBox="0 0 24 24" fill="rgba(52, 211, 153, 0.1)" stroke="currentColor" stroke-width="1" stroke-linecap="round" stroke-linejoin="round" class="pure-tech-svg svg-emerald">
+            <polyline points="4 17 10 11 4 5"/>
+            <line x1="12" y1="19" x2="20" y2="19"/>
+          </svg>
+        </div>
+
+        <!-- 3. Cpu (Microchip) -->
+        <div class="pure-floating-icon icon-pos-3">
+          <svg viewBox="0 0 24 24" fill="rgba(167, 139, 250, 0.1)" stroke="currentColor" stroke-width="1" stroke-linecap="round" stroke-linejoin="round" class="pure-tech-svg svg-violet">
+            <rect width="16" height="16" x="4" y="4" rx="2"/>
+            <rect width="6" height="6" x="9" y="9"/>
+            <path d="M15 2v2"/>
+            <path d="M15 20v2"/>
+            <path d="M2 15h2"/>
+            <path d="M2 9h2"/>
+            <path d="M20 15h2"/>
+            <path d="M20 9h2"/>
+            <path d="M9 2v2"/>
+            <path d="M9 20v2"/>
+          </svg>
+        </div>
+
+        <!-- 4. MonitorPlay (Screen) -->
+        <div class="pure-floating-icon icon-pos-4">
+          <svg viewBox="0 0 24 24" fill="rgba(96, 165, 250, 0.1)" stroke="currentColor" stroke-width="1" stroke-linecap="round" stroke-linejoin="round" class="pure-tech-svg svg-blue">
+            <path d="m10 7 5 3-5 3z"/>
+            <rect width="20" height="14" x="2" y="3" rx="2"/>
+            <path d="M12 17v4"/>
+            <path d="M8 21h8"/>
+          </svg>
+        </div>
+
+        <!-- 5. Database (Stack) -->
+        <div class="pure-floating-icon icon-pos-5">
+          <svg viewBox="0 0 24 24" fill="rgba(34, 211, 238, 0.1)" stroke="currentColor" stroke-width="1" stroke-linecap="round" stroke-linejoin="round" class="pure-tech-svg svg-cyan">
+            <ellipse cx="12" cy="5" rx="9" ry="3"/>
+            <path d="M3 5V19A9 3 0 0 0 21 19V5"/>
+            <path d="M3 12A9 3 0 0 0 21 12"/>
+          </svg>
+        </div>
+
+        <!-- 6. Server -->
+        <div class="pure-floating-icon icon-pos-6">
+          <svg viewBox="0 0 24 24" fill="rgba(192, 132, 252, 0.1)" stroke="currentColor" stroke-width="1" stroke-linecap="round" stroke-linejoin="round" class="pure-tech-svg svg-purple">
+            <rect width="20" height="8" x="2" y="2" rx="2" ry="2"/>
+            <rect width="20" height="8" x="2" y="14" rx="2" ry="2"/>
+            <line x1="6" x2="6.01" y1="6" y2="6"/>
+            <line x1="6" x2="6.01" y1="18" y2="18"/>
+          </svg>
+        </div>
+
+        <!-- 7. Globe (Wireframe Sphere) -->
+        <div class="pure-floating-icon icon-pos-7">
+          <svg viewBox="0 0 24 24" fill="rgba(52, 211, 153, 0.1)" stroke="currentColor" stroke-width="1" stroke-linecap="round" stroke-linejoin="round" class="pure-tech-svg svg-emerald">
+            <circle cx="12" cy="12" r="10"/>
+            <path d="M12 2a14.5 14.5 0 0 0 0 20 14.5 14.5 0 0 0 0-20"/>
+            <path d="M2 12h20"/>
+          </svg>
+        </div>
+
+        <!-- 8. Braces ({}) -->
+        <div class="pure-floating-icon icon-pos-8">
+          <svg viewBox="0 0 24 24" fill="rgba(96, 165, 250, 0.1)" stroke="currentColor" stroke-width="1" stroke-linecap="round" stroke-linejoin="round" class="pure-tech-svg svg-blue">
+            <path d="M8 3H7a2 2 0 0 0-2 2v5a2 2 0 0 1-2 2 2 2 0 0 1 2 2v5c0 1.1.9 2 2 2h1"/>
+            <path d="M16 21h1a2 2 0 0 0 2-2v-5c0-1.1.9-2 2-2a2 2 0 0 1-2-2V5a2 2 0 0 0-2-2h-1"/>
+          </svg>
+        </div>
+
+        <!-- 9. Cloud -->
+        <div class="pure-floating-icon icon-pos-9">
+          <svg viewBox="0 0 24 24" fill="rgba(34, 211, 238, 0.1)" stroke="currentColor" stroke-width="1" stroke-linecap="round" stroke-linejoin="round" class="pure-tech-svg svg-cyan">
+            <path d="M17.5 19H9a7 7 0 1 1 6.71-9h1.79a4.5 4.5 0 1 1 0 9Z"/>
+          </svg>
+        </div>
+
+        <!-- 10. Satellite -->
+        <div class="pure-floating-icon icon-pos-10">
+          <svg viewBox="0 0 24 24" fill="rgba(236, 72, 153, 0.1)" stroke="currentColor" stroke-width="1" stroke-linecap="round" stroke-linejoin="round" class="pure-tech-svg svg-pink">
+            <path d="M13 7 9 3 5 7l4 4"/>
+            <path d="m17 11 4 4-4 4-4-4"/>
+            <path d="m8 12 4 4 6-6-4-4Z"/>
+            <path d="m16 8 3-3"/>
+            <path d="M9 21a6 6 0 0 0-6-6"/>
+          </svg>
+        </div>
+
+        <!-- 11. Laptop -->
+        <div class="pure-floating-icon icon-pos-11">
+          <svg viewBox="0 0 24 24" fill="rgba(167, 139, 250, 0.1)" stroke="currentColor" stroke-width="1" stroke-linecap="round" stroke-linejoin="round" class="pure-tech-svg svg-violet">
+            <path d="M20 16V7a2 2 0 0 0-2-2H6a2 2 0 0 0-2 2v9m16 0H4m16 0 1.28 2.55a1 1 0 0 1-.9 1.45H3.62a1 1 0 0 1-.9-1.45L4 16"/>
+          </svg>
+        </div>
+
+        <!-- 12. Atom (Quantum / React) -->
+        <div class="pure-floating-icon icon-pos-12">
+          <svg viewBox="0 0 24 24" fill="rgba(34, 211, 238, 0.1)" stroke="currentColor" stroke-width="1" stroke-linecap="round" stroke-linejoin="round" class="pure-tech-svg svg-cyan">
+            <circle cx="12" cy="12" r="2"/>
+            <ellipse cx="12" cy="12" rx="4" ry="10" transform="rotate(45 12 12)"/>
+            <ellipse cx="12" cy="12" rx="4" ry="10" transform="rotate(-45 12 12)"/>
+          </svg>
+        </div>
+
+        <!-- 13. ShieldCheck (Zero-Trust Security) -->
+        <div class="pure-floating-icon icon-pos-13">
+          <svg viewBox="0 0 24 24" fill="rgba(52, 211, 153, 0.1)" stroke="currentColor" stroke-width="1" stroke-linecap="round" stroke-linejoin="round" class="pure-tech-svg svg-emerald">
+            <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>
+            <path d="m9 12 2 2 4-4"/>
+          </svg>
+        </div>
+
+        <!-- 14. Rocket (Innovation Launch) -->
+        <div class="pure-floating-icon icon-pos-14">
+          <svg viewBox="0 0 24 24" fill="rgba(251, 191, 36, 0.1)" stroke="currentColor" stroke-width="1" stroke-linecap="round" stroke-linejoin="round" class="pure-tech-svg svg-gold">
+            <path d="M4.5 16.5c-1.5 1.26-2 5-2 5s3.74-.5 5-2c.71-.84.7-2.13-.09-2.91a2.18 2.18 0 0 0-2.91-.09z"/>
+            <path d="m12 15-3-3a22 22 0 0 1 2-3.95A12.88 12.88 0 0 1 22 2c0 2.72-.78 7.5-6 11a22.35 22.35 0 0 1-4 2z"/>
+          </svg>
+        </div>
+
+        <!-- 15. Wifi (Telemetry Waves) -->
+        <div class="pure-floating-icon icon-pos-15">
+          <svg viewBox="0 0 24 24" fill="rgba(34, 211, 238, 0.1)" stroke="currentColor" stroke-width="1" stroke-linecap="round" stroke-linejoin="round" class="pure-tech-svg svg-cyan">
+            <path d="M12 20h.01"/>
+            <path d="M2 8.82a15 15 0 0 1 20 0"/>
+            <path d="M5 12.86a10 10 0 0 1 14 0"/>
+            <path d="M8.5 16.43a5 5 0 0 1 7 0"/>
+          </svg>
+        </div>
+
+        <!-- 16. Boxes (Web3 / 3D Isometric Cube) -->
+        <div class="pure-floating-icon icon-pos-16">
+          <svg viewBox="0 0 24 24" fill="rgba(167, 139, 250, 0.1)" stroke="currentColor" stroke-width="1" stroke-linecap="round" stroke-linejoin="round" class="pure-tech-svg svg-violet">
+            <path d="m21 16-9 5-9-5V8l9-5 9 5v8z"/>
+            <path d="m3.27 6.96 8.73 4.89 8.73-4.89"/>
+            <path d="M12 22.08V11.85"/>
+          </svg>
+        </div>
+
+        <!-- 17. Bot (AI / Robotics) -->
+        <div class="pure-floating-icon icon-pos-17">
+          <svg viewBox="0 0 24 24" fill="rgba(52, 211, 153, 0.1)" stroke="currentColor" stroke-width="1" stroke-linecap="round" stroke-linejoin="round" class="pure-tech-svg svg-emerald">
+            <path d="M12 8V4H8"/>
+            <rect width="16" height="12" x="4" y="8" rx="2"/>
+            <path d="M2 14h2"/>
+            <path d="M20 14h2"/>
+            <path d="M15 13v2"/>
+            <path d="M9 13v2"/>
+          </svg>
+        </div>
+
+        <!-- 18. GitBranch (Dev Collaboration) -->
+        <div class="pure-floating-icon icon-pos-18">
+          <svg viewBox="0 0 24 24" fill="rgba(192, 132, 252, 0.1)" stroke="currentColor" stroke-width="1" stroke-linecap="round" stroke-linejoin="round" class="pure-tech-svg svg-purple">
+            <line x1="6" x2="6" y1="3" y2="15"/>
+            <circle cx="18" cy="6" r="3"/>
+            <circle cx="6" cy="18" r="3"/>
+            <path d="M18 9a9 9 0 0 1-9 9"/>
+          </svg>
+        </div>
+
+        <!-- 19. Zap (Power & Velocity) -->
+        <div class="pure-floating-icon icon-pos-19">
+          <svg viewBox="0 0 24 24" fill="rgba(251, 191, 36, 0.1)" stroke="currentColor" stroke-width="1" stroke-linecap="round" stroke-linejoin="round" class="pure-tech-svg svg-gold">
+            <polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/>
+          </svg>
+        </div>
+
+        <!-- 20. FileCode (Syntax & Algorithms) -->
+        <div class="pure-floating-icon icon-pos-20">
+          <svg viewBox="0 0 24 24" fill="rgba(96, 165, 250, 0.1)" stroke="currentColor" stroke-width="1" stroke-linecap="round" stroke-linejoin="round" class="pure-tech-svg svg-blue">
+            <path d="M15 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V7Z"/>
+            <path d="M14 2v4a2 2 0 0 0 2 2h4"/>
+            <path d="m10 13-2 2 2 2"/>
+            <path d="m14 17 2-2-2-2"/>
+          </svg>
+        </div>
+      </div>
+
+      <!-- Centerpiece Standby Content -->
+      <div class="standby-content">
+        
+        <!-- Live Badge -->
+        <div class="ceremony-badge">
+          <span class="pulse-dot"></span>
+          <span>OFFICIAL CEREMONY · DIGITAL POSTER LAUNCH</span>
+        </div>
+
+        <!-- Main Title: AVISHKAAR DIGITAL POSTER -->
+        <div class="title-container">
+          <h1 class="main-avishkaar-title">
+            <span class="water-shimmer">AVISHKAAR</span>
+          </h1>
+          <div class="digital-poster-centerpiece" id="spin-emblem">
+            <h2 class="digital-poster-main-text">DIGITAL POSTER</h2>
+            <p class="digital-poster-edition-tag">SEASON 4 · INNOVATION HACKATHON</p>
+          </div>
+        </div>
+
+        <!-- Small Launch Button -->
+        <div class="launch-controls">
+          <button id="launch-button" class="grand-launch-btn small-launch-btn">
+            <div class="btn-energy-glow"></div>
+            <div class="btn-content">
+              <span class="btn-text">LAUNCH</span>
+            </div>
+          </button>
+        </div>
+
+      </div>
+
+    </section>
+
+    <!-- ================= STAGE 1: POSTER THEATER (VIDEO PREMIERE -> SEAMLESS POSTER REVEAL) ================= -->
+    <section id="poster-stage" class="stage-section">
+      <!-- Discreet Skip Button -->
+      <button id="skip-video-btn" class="cinema-skip-btn" title="Skip Animation to Final Poster">
+        <span>SKIP ➔</span>
+      </button>
+
+      <!-- Centerpiece Poster Arena -->
+      <div class="poster-center-showcase">
+        <div class="poster-spotlight-card" id="poster-card">
+          <div class="poster-glow-backdrop"></div>
+          
+          <!-- Unified Media Frame: Holds both Video & High-Res Poster at exact same 720:1052 ratio -->
+          <div class="poster-media-frame" id="poster-zoom-trigger" title="Click to view fullscreen">
+            <video id="poster-video" playsinline preload="auto">
+              <source src="assets/avishkaar_poster_launch_animation.mp4" type="video/mp4">
+              Your browser does not support HTML5 video.
+            </video>
+            <img id="poster-image" src="assets/POSTER PRINT.jpeg" alt="Avishkaar Season 4 Official Poster" class="poster-unveiled-img">
+            <div class="poster-hologram-shimmer"></div>
+          </div>
+          
+          <!-- Poster Action Buttons (Fade in upon reveal) -->
+          <div class="poster-action-bar" id="poster-action-bar">
+            <button id="view-fullscreen-btn" class="btn-fullscreen-poster" title="View Fullscreen Lightbox">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M15 3h6v6M9 21H3v-6M21 3l-7 7M3 21l7-7"/>
+              </svg>
+              <span>VIEW FULLSCREEN</span>
+            </button>
+            <button id="replay-video-btn" class="btn-replay-video" title="Replay Animation">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M1 4v6h6M23 20v-6h-6"/>
+                <path d="M20.49 9A9 9 0 0 0 5.64 5.64L1 10m22 4l-4.64 4.36A9 9 0 0 1 3.51 15"/>
+              </svg>
+              <span>↺ REPLAY ANIMATION</span>
+            </button>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Fullscreen Poster Modal / Lightbox -->
+    <div id="poster-modal" class="poster-modal hidden">
+      <div class="modal-backdrop" id="modal-close-backdrop"></div>
+      <div class="modal-content">
+        <button id="modal-close-btn" class="modal-close-btn" title="Close Fullscreen">&times;</button>
+        <img src="assets/POSTER PRINT.jpeg" alt="Avishkaar Season 4 Official Poster Fullscreen" class="modal-poster-img">
+      </div>
+    </div>
+
+  </main>
+
+  <script src="script.js"></script>
+</body>
+</html>

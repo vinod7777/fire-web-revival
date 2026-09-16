@@ -1,0 +1,702 @@
+@import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;600;700;800;900&family=Exo+2:wght@300;400;500;600;700&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --background: 210 50% 5%;
+    --foreground: 200 100% 95%;
+
+    --card: 210 50% 8%;
+    --card-foreground: 200 100% 95%;
+
+    --popover: 210 50% 8%;
+    --popover-foreground: 200 100% 95%;
+
+    --primary: 195 100% 50%;
+    --primary-foreground: 210 50% 5%;
+
+    --secondary: 220 85% 55%;
+    --secondary-foreground: 0 0% 100%;
+
+    --muted: 210 30% 15%;
+    --muted-foreground: 200 20% 60%;
+
+    --accent: 175 100% 45%;
+    --accent-foreground: 210 50% 5%;
+
+    --destructive: 0 84.2% 60.2%;
+    --destructive-foreground: 210 40% 98%;
+
+    --border: 200 50% 20%;
+    --input: 200 50% 20%;
+    --ring: 195 100% 50%;
+
+    --radius: 0.75rem;
+
+    /* Water theme custom tokens */
+    --water-cyan: 195 100% 50%;
+    --water-blue: 220 85% 55%;
+    --water-teal: 175 100% 45%;
+    --deep-sea: 210 80% 20%;
+    --foam: 200 30% 90%;
+    --wave: 200 50% 30%;
+    
+    /* Gradients */
+    --gradient-water: linear-gradient(135deg, hsl(220, 85%, 55%) 0%, hsl(195, 100%, 50%) 50%, hsl(175, 100%, 45%) 100%);
+    --gradient-ocean: linear-gradient(180deg, hsl(195, 100%, 50%) 0%, hsl(220, 85%, 40%) 100%);
+    --gradient-depth: linear-gradient(135deg, hsl(210, 50%, 5%) 0%, hsl(220, 85%, 25%) 50%, hsl(210, 50%, 5%) 100%);
+    
+    /* Shadows & Glows */
+    --glow-water: 0 0 30px hsl(195, 100%, 50%, 0.6), 0 0 60px hsl(220, 85%, 55%, 0.4);
+    --glow-ocean: 0 0 20px hsl(175, 100%, 45%, 0.5);
+    --shadow-water: 0 10px 40px -10px hsl(195, 100%, 50%, 0.5);
+
+    --sidebar-background: 0 0% 98%;
+    --sidebar-foreground: 240 5.3% 26.1%;
+    --sidebar-primary: 240 5.9% 10%;
+    --sidebar-primary-foreground: 0 0% 98%;
+    --sidebar-accent: 240 4.8% 95.9%;
+    --sidebar-accent-foreground: 240 5.9% 10%;
+    --sidebar-border: 220 13% 91%;
+    --sidebar-ring: 217.2 91.2% 59.8%;
+  }
+
+  .dark {
+    --background: 210 50% 5%;
+    --foreground: 200 100% 95%;
+    --card: 210 50% 8%;
+    --card-foreground: 200 100% 95%;
+    --popover: 210 50% 8%;
+    --popover-foreground: 200 100% 95%;
+    --primary: 195 100% 50%;
+    --primary-foreground: 210 50% 5%;
+    --secondary: 220 85% 55%;
+    --secondary-foreground: 0 0% 100%;
+    --muted: 210 30% 15%;
+    --muted-foreground: 200 20% 60%;
+    --accent: 175 100% 45%;
+    --accent-foreground: 210 50% 5%;
+    --destructive: 0 62.8% 30.6%;
+    --destructive-foreground: 210 40% 98%;
+    --border: 200 50% 20%;
+    --input: 200 50% 20%;
+    --ring: 195 100% 50%;
+    --sidebar-background: 240 5.9% 10%;
+    --sidebar-foreground: 240 4.8% 95.9%;
+    --sidebar-primary: 224.3 76.3% 48%;
+    --sidebar-primary-foreground: 0 0% 100%;
+    --sidebar-accent: 240 3.7% 15.9%;
+    --sidebar-accent-foreground: 240 4.8% 95.9%;
+    --sidebar-border: 240 3.7% 15.9%;
+    --sidebar-ring: 217.2 91.2% 59.8%;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+
+  html {
+    /* Lenis handles smooth scrolling globally */
+    scroll-behavior: auto;
+    -webkit-overflow-scrolling: touch;
+  }
+  html.lenis, html.lenis body { height: auto; }
+  .lenis.lenis-smooth { scroll-behavior: auto !important; }
+  .lenis.lenis-smooth [data-lenis-prevent] { overscroll-behavior: contain; }
+  .lenis.lenis-stopped { overflow: hidden; }
+
+  body {
+    @apply bg-background text-foreground font-body;
+    font-feature-settings: "rlig" 1, "calt" 1;
+    overflow-x: hidden;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    line-height: 1.6;
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+    @apply font-display;
+    line-height: 1.2;
+  }
+
+  p {
+    line-height: 1.7;
+  }
+
+  /* ═══════════════════════════════════════════════
+     UI/UX PRO MAX: Z-Index Scale (10, 20, 30, 50)
+     ═══════════════════════════════════════════════ */
+  :root {
+    --z-base: 1;
+    --z-floating: 10;
+    --z-overlay: 20;
+    --z-modal: 30;
+    --z-nav: 50;
+  }
+
+  /* ═══════════════════════════════════════════════
+     UI/UX PRO MAX: Visible Focus States (CRITICAL)
+     ═══════════════════════════════════════════════ */
+  :focus-visible {
+    outline: 2px solid hsl(195, 100%, 50%);
+    outline-offset: 2px;
+    border-radius: 4px;
+  }
+
+  /* ═══════════════════════════════════════════════
+     UI/UX PRO MAX: Touch Targets (CRITICAL - min 44x44px)
+     ═══════════════════════════════════════════════ */
+  a, button {
+    min-height: 44px;
+    min-width: 44px;
+    cursor: pointer;
+  }
+
+  /* Exempt inline spans/small elements */
+  span[role="button"] {
+    min-height: 44px;
+    min-width: 44px;
+  }
+
+  /* GPU acceleration for smoother animations */
+  .gpu-accelerate {
+    transform: translateZ(0);
+    backface-visibility: hidden;
+    perspective: 1000px;
+  }
+
+  /* ═══════════════════════════════════════════════
+     UI/UX PRO MAX: Reduced Motion (CRITICAL)
+     ═══════════════════════════════════════════════ */
+  @media (prefers-reduced-motion: reduce) {
+    *,
+    *::before,
+    *::after {
+      animation-duration: 0.01ms !important;
+      animation-iteration-count: 1 !important;
+      transition-duration: 0.01ms !important;
+      scroll-behavior: auto !important;
+    }
+
+    .motion-reduce-hide {
+      display: none !important;
+    }
+
+    /* Keep 3D scenes static */
+    canvas {
+      animation: none !important;
+    }
+  }
+
+  /* Smooth scrolling for anchor links */
+  [id] {
+    scroll-margin-top: 80px;
+  }
+}
+
+@layer utilities {
+  .text-gradient-water {
+    background: linear-gradient(135deg, hsl(175, 100%, 45%) 0%, hsl(195, 100%, 50%) 50%, hsl(220, 85%, 55%) 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+
+  .bg-gradient-water {
+    background: linear-gradient(135deg, hsl(220, 85%, 55%) 0%, hsl(195, 100%, 50%) 50%, hsl(175, 100%, 45%) 100%);
+  }
+
+  .bg-gradient-ocean {
+    background: linear-gradient(180deg, hsl(195, 100%, 50%) 0%, hsl(220, 85%, 40%) 100%);
+  }
+
+  .glow-water {
+    box-shadow: 0 0 30px hsl(195, 100%, 50%, 0.6), 0 0 60px hsl(220, 85%, 55%, 0.4);
+  }
+
+  .glow-ocean {
+    box-shadow: 0 0 20px hsl(175, 100%, 45%, 0.5);
+  }
+
+  /* ═══════════════════════════════════════════════
+     UI/UX PRO MAX: Glassmorphism Card System
+     ═══════════════════════════════════════════════ */
+  .glass-card {
+    background: rgba(3, 43, 67, 0.25);
+    backdrop-filter: blur(16px) saturate(180%);
+    -webkit-backdrop-filter: blur(16px) saturate(180%);
+    border: 1px solid rgba(34, 211, 238, 0.12);
+    transition: all 300ms cubic-bezier(0.4, 0, 0.2, 1);
+  }
+
+  .glass-card:hover {
+    background: rgba(3, 43, 67, 0.35);
+    border-color: rgba(34, 211, 238, 0.25);
+    box-shadow: 
+      0 0 20px rgba(34, 211, 238, 0.15),
+      0 8px 32px rgba(0, 0, 0, 0.3);
+    transform: translateY(-2px);
+  }
+
+  /* ═══════════════════════════════════════════════
+     3D WEB EXPERIENCE: Bioluminescent Glow
+     ═══════════════════════════════════════════════ */
+  .glow-bioluminescent {
+    box-shadow: 
+      0 0 15px rgba(34, 211, 238, 0.4),
+      0 0 30px rgba(34, 211, 238, 0.2),
+      0 0 60px rgba(34, 211, 238, 0.1),
+      inset 0 0 15px rgba(34, 211, 238, 0.05);
+  }
+
+  .glow-bioluminescent-purple {
+    box-shadow: 
+      0 0 15px rgba(168, 85, 247, 0.4),
+      0 0 30px rgba(168, 85, 247, 0.2),
+      0 0 60px rgba(168, 85, 247, 0.1),
+      inset 0 0 15px rgba(168, 85, 247, 0.05);
+  }
+
+  .glow-bioluminescent-emerald {
+    box-shadow: 
+      0 0 15px rgba(52, 211, 153, 0.4),
+      0 0 30px rgba(52, 211, 153, 0.2),
+      0 0 60px rgba(52, 211, 153, 0.1),
+      inset 0 0 15px rgba(52, 211, 153, 0.05);
+  }
+
+  /* ═══════════════════════════════════════════════
+     UI/UX PRO MAX: Interactive Button Styles
+     ═══════════════════════════════════════════════ */
+  .btn-ocean {
+    position: relative;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.75rem;
+    padding: 0.875rem 2rem;
+    border-radius: 9999px;
+    font-weight: 700;
+    font-family: var(--font-display, 'Orbitron', sans-serif);
+    color: hsl(200, 100%, 95%);
+    background: rgba(3, 43, 67, 0.4);
+    border: 1px solid rgba(34, 211, 238, 0.35);
+    backdrop-filter: blur(12px);
+    cursor: pointer;
+    transition: all 250ms cubic-bezier(0.4, 0, 0.2, 1);
+    box-shadow: 0 0 20px rgba(34, 211, 238, 0.2);
+  }
+
+  .btn-ocean:hover {
+    background: rgba(34, 211, 238, 0.15);
+    border-color: rgba(34, 211, 238, 0.6);
+    box-shadow: 
+      0 0 30px rgba(34, 211, 238, 0.4),
+      0 0 60px rgba(34, 211, 238, 0.2);
+    transform: translateY(-2px);
+  }
+
+  .btn-ocean:active {
+    transform: translateY(0);
+    box-shadow: 0 0 15px rgba(34, 211, 238, 0.3);
+  }
+
+  /* ═══════════════════════════════════════════════
+     3D WEB EXPERIENCE: Animated Neon Border
+     ═══════════════════════════════════════════════ */
+  .neon-border {
+    position: relative;
+    overflow: hidden;
+  }
+
+  .neon-border::before {
+    content: '';
+    position: absolute;
+    inset: -2px;
+    border-radius: inherit;
+    padding: 2px;
+    background: conic-gradient(
+      from var(--neon-angle, 0deg),
+      transparent 0%,
+      rgba(34, 211, 238, 0.8) 10%,
+      transparent 20%,
+      transparent 80%,
+      rgba(34, 211, 238, 0.8) 90%,
+      transparent 100%
+    );
+    mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+    -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+    mask-composite: exclude;
+    -webkit-mask-composite: xor;
+    animation: neonSpin 4s linear infinite;
+    pointer-events: none;
+    z-index: 1;
+    opacity: 0;
+    transition: opacity 300ms ease;
+  }
+
+  .neon-border:hover::before {
+    opacity: 1;
+  }
+
+  /* ═══════════════════════════════════════════════
+     3D WEB EXPERIENCE: Depth-Aware Section Transitions
+     ═══════════════════════════════════════════════ */
+  .section-depth {
+    position: relative;
+  }
+
+  .section-depth::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 120px;
+    background: linear-gradient(to bottom, transparent, rgba(0, 8, 20, 0.6));
+    pointer-events: none;
+    z-index: 2;
+  }
+
+  .animate-ripple {
+    animation: ripple 3s ease-in-out infinite;
+  }
+
+  .animate-float {
+    animation: float 6s ease-in-out infinite;
+  }
+
+  .animate-pulse-glow {
+    animation: pulseGlow 2s ease-in-out infinite;
+  }
+
+  .animate-bubble-rise {
+    animation: bubbleRise 4s ease-out infinite;
+  }
+}
+
+/* ═══════════════════════════════════════════════
+   Viewport-gated Section Optimization:
+   Freezes all CSS animations when section is offscreen
+   ═══════════════════════════════════════════════ */
+.section-idle,
+.section-idle *,
+.section-idle *::before,
+.section-idle *::after,
+[data-visible="false"],
+[data-visible="false"] *,
+[data-visible="false"] *::before,
+[data-visible="false"] *::after {
+  animation-play-state: paused !important;
+}
+
+/* ═══════════════════════════════════════════════
+   Performance-optimized keyframes (transform/opacity)
+   ═══════════════════════════════════════════════ */
+@keyframes ripple {
+  0%, 100% { transform: scale(1); opacity: 1; }
+  50% { transform: scale(1.05); opacity: 0.8; }
+}
+
+@keyframes float {
+  0%, 100% { transform: translateY(0) translateZ(0); }
+  50% { transform: translateY(-20px) translateZ(0); }
+}
+
+@keyframes pulseGlow {
+  0%, 100% { 
+    box-shadow: 0 0 30px hsl(195, 100%, 50%, 0.6), 0 0 60px hsl(220, 85%, 55%, 0.4);
+  }
+  50% { 
+    box-shadow: 0 0 50px hsl(195, 100%, 50%, 0.8), 0 0 100px hsl(220, 85%, 55%, 0.6);
+  }
+}
+
+@keyframes bubbleRise {
+  0% {
+    transform: translateY(0) scale(1) translateZ(0);
+    opacity: 0.8;
+  }
+  100% {
+    transform: translateY(-100px) scale(0.5) translateZ(0);
+    opacity: 0;
+  }
+}
+
+@keyframes neonSpin {
+  0% { --neon-angle: 0deg; }
+  100% { --neon-angle: 360deg; }
+}
+
+@property --neon-angle {
+  syntax: "<angle>";
+  initial-value: 0deg;
+  inherits: false;
+}
+
+/* ═══════════════════════════════════════════════
+   3D WEB EXPERIENCE: Bioluminescent Pulse
+   ═══════════════════════════════════════════════ */
+@keyframes bioluminescentPulse {
+  0%, 100% {
+    box-shadow: 
+      0 0 10px rgba(34, 211, 238, 0.3),
+      0 0 20px rgba(34, 211, 238, 0.15);
+  }
+  50% {
+    box-shadow: 
+      0 0 20px rgba(34, 211, 238, 0.5),
+      0 0 40px rgba(34, 211, 238, 0.25),
+      0 0 60px rgba(34, 211, 238, 0.1);
+  }
+}
+
+.animate-bioluminescent {
+  animation: bioluminescentPulse 3s ease-in-out infinite;
+}
+
+/* Water droplet fall animation */
+@keyframes dropletFall {
+  0% {
+    transform: translateY(-20px) scale(0.8);
+    opacity: 0;
+  }
+  10% {
+    opacity: 0.8;
+  }
+  90% {
+    opacity: 0.6;
+  }
+  100% {
+    transform: translateY(100vh) scale(0.6);
+    opacity: 0;
+  }
+}
+
+.animate-droplet-fall {
+  animation: dropletFall 6s ease-in infinite;
+}
+
+/* Smooth timeline flow */
+@keyframes timelineFlow {
+  0% {
+    background-position: 0% 0%;
+  }
+  100% {
+    background-position: 0% 200%;
+  }
+}
+
+.animate-timeline-flow {
+  animation: timelineFlow 3s linear infinite;
+}
+
+/* Wave animation */
+@keyframes wave {
+  0%, 100% {
+    transform: translateX(0) translateY(0);
+  }
+  25% {
+    transform: translateX(-5px) translateY(-3px);
+  }
+  50% {
+    transform: translateX(0) translateY(-5px);
+  }
+  75% {
+    transform: translateX(5px) translateY(-3px);
+  }
+}
+
+.animate-wave {
+  animation: wave 3s ease-in-out infinite;
+}
+
+/* Ripple expand animation */
+@keyframes ripple-expand {
+  0% {
+    transform: scale(0.8);
+    opacity: 1;
+  }
+  100% {
+    transform: scale(2.5);
+    opacity: 0;
+  }
+}
+
+.animate-ripple-expand {
+  animation: ripple-expand 2s ease-out infinite;
+}
+
+/* Water shimmer effect */
+@keyframes water-shimmer {
+  0% {
+    background-position: -200% 0;
+  }
+  100% {
+    background-position: 200% 0;
+  }
+}
+
+.animate-water-shimmer {
+  background: linear-gradient(
+    90deg,
+    transparent 0%,
+    hsl(195, 100%, 50%, 0.3) 50%,
+    transparent 100%
+  );
+  background-size: 200% 100%;
+  animation: water-shimmer 3s linear infinite;
+}
+
+/* Wave flow animation for section backgrounds */
+@keyframes wave-flow {
+  0% {
+    transform: translateX(-100%) translateY(0);
+  }
+  50% {
+    transform: translateX(0%) translateY(-10px);
+  }
+  100% {
+    transform: translateX(100%) translateY(0);
+  }
+}
+
+.animate-wave-flow {
+  animation: wave-flow 8s ease-in-out infinite;
+}
+
+/* ═══════════════════════════════════════════════
+   3D WEB EXPERIENCE: Underwater Sway 
+   ═══════════════════════════════════════════════ */
+@keyframes underwaterSway {
+  0%, 100% {
+    transform: translateX(0) rotate(0deg);
+  }
+  25% {
+    transform: translateX(3px) rotate(0.3deg);
+  }
+  75% {
+    transform: translateX(-3px) rotate(-0.3deg);
+  }
+}
+
+.animate-underwater-sway {
+  animation: underwaterSway 8s ease-in-out infinite;
+}
+
+/* ═══════════════════════════════════════════════
+   3D WEB EXPERIENCE: Deep Sea Shimmer
+   ═══════════════════════════════════════════════ */
+@keyframes deepSeaShimmer {
+  0% {
+    background-position: 0% 50%;
+    opacity: 0.3;
+  }
+  50% {
+    background-position: 100% 50%;
+    opacity: 0.6;
+  }
+  100% {
+    background-position: 0% 50%;
+    opacity: 0.3;
+  }
+}
+
+.animate-deep-shimmer {
+  background: linear-gradient(
+    135deg,
+    transparent 0%,
+    rgba(34, 211, 238, 0.08) 25%,
+    transparent 50%,
+    rgba(168, 85, 247, 0.05) 75%,
+    transparent 100%
+  );
+  background-size: 200% 200%;
+  animation: deepSeaShimmer 6s ease-in-out infinite;
+}
+
+/* Smooth scroll container */
+.scroll-smooth {
+  scroll-behavior: smooth;
+}
+
+/* Will-change for frequently animated elements */
+.will-animate {
+  will-change: transform, opacity;
+}
+
+/* Contain paint for better performance */
+.contain-paint {
+  contain: paint;
+}
+
+/* Touch optimization */
+@supports (touch-action: manipulation) {
+  a, button {
+    touch-action: manipulation;
+  }
+}
+
+/* Section water background effect */
+.water-bg-effect {
+  position: relative;
+  overflow: hidden;
+}
+
+.water-bg-effect::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: radial-gradient(
+    ellipse at 50% 100%,
+    hsl(195, 100%, 50%, 0.1) 0%,
+    transparent 70%
+  );
+  pointer-events: none;
+}
+
+/* ═══════════════════════════════════════════════
+   UI/UX PRO MAX: Selection Styling
+   ═══════════════════════════════════════════════ */
+::selection {
+  background: rgba(34, 211, 238, 0.3);
+  color: hsl(200, 100%, 95%);
+}
+
+/* ═══════════════════════════════════════════════
+   UI/UX PRO MAX: Scrollbar Styling
+   ═══════════════════════════════════════════════ */
+::-webkit-scrollbar {
+  width: 6px;
+}
+
+::-webkit-scrollbar-track {
+  background: rgba(2, 6, 23, 0.8);
+}
+
+::-webkit-scrollbar-thumb {
+  background: linear-gradient(180deg, rgba(34, 211, 238, 0.4), rgba(56, 189, 248, 0.2));
+  border-radius: 3px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: linear-gradient(180deg, rgba(34, 211, 238, 0.6), rgba(56, 189, 248, 0.4));
+}
+
+@keyframes nav-ripple {
+  0% { transform: scale(0); opacity: 1; }
+  100% { transform: scale(4); opacity: 0; }
+}
+
+@keyframes borderBeamMove {
+  0% { stroke-dashoffset: 1650; }
+  100% { stroke-dashoffset: 0; }
+}
+

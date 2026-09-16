@@ -1,0 +1,22 @@
+# Robots.txt for https://avishkaar.co
+User-agent: *
+Allow: /
+
+# Directives for major search crawlers
+User-agent: Googlebot
+Allow: /
+
+User-agent: Bingbot
+Allow: /
+
+User-agent: Twitterbot
+Allow: /
+
+User-agent: facebookexternalhit
+Allow: /
+
+User-agent: LinkedInBot
+Allow: /
+
+# XML Sitemap location
+Sitemap: https://avishkaar.co/sitemap.xml
